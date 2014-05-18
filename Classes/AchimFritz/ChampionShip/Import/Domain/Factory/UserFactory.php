@@ -69,13 +69,11 @@ class UserFactory {
 					$tipGroup = new TipGroup();
 					$tipGroup->setName($group);
 					$this->tipGroupRepository->add($tipGroup);
-				} elseif ($pUser->hasTipGroup($tipGroup) === FALSE) {
-					if ($i == 0) {
-						$firstGroup = $tipGroup;
-					}
-					if(!$pUser->getTipGroup() instanceof TipGroup) {
-						$pUser->setTipGroup($tipGroup);
-					}
+				} 
+				if(!$pUser->getTipGroup() instanceof TipGroup) {
+					$pUser->setTipGroup($tipGroup);
+				}
+				if ($pUser->hasTipGroup($tipGroup) === FALSE) {
 					$pUser->addTipGroup($tipGroup);
 				}
 			}
