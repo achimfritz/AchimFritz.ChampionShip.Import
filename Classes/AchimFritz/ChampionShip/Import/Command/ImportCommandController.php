@@ -165,6 +165,7 @@ class ImportCommandController extends \TYPO3\Flow\Cli\CommandController {
 				try {
 					$teams = $this->teamFactory->createFromMatch($match);
 					$cup = $this->cupFactory->createFromMatch($match, $teams);
+					$this->persistenceManager->persistAll();
 					if ($match->getRoundType() == 1 OR $match->getRoundType() == 0) {
 						$groupRound = $this->groupRoundFactory->createFromMatch($match, $teams, $cup);
 						$groupMatch = $this->groupMatchFactory->createFromMatch($match, $teams, $cup, $groupRound);
