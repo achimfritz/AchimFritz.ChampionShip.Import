@@ -6,8 +6,8 @@ namespace AchimFritz\ChampionShip\Import\Controller;
  *                                                                        *
  *                                                                        */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\RestController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\RestController;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 use AchimFritz\ChampionShip\Import\Domain\Model\Tip;
 
