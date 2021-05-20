@@ -7,10 +7,10 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\GroupMatch;
-use AchimFritz\ChampionShip\Domain\Model\Result;
-use AchimFritz\ChampionShip\Domain\Model\GroupRound;
-use AchimFritz\ChampionShip\Domain\Model\Cup;
+use AchimFritz\ChampionShip\Competition\Domain\Model\GroupMatch;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Result;
+use AchimFritz\ChampionShip\Competition\Domain\Model\GroupRound;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Cup;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 
 /**
@@ -22,7 +22,7 @@ class GroupMatchFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\GroupMatchRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\GroupMatchRepository
     */
    protected $groupMatchRepository;
 
@@ -30,9 +30,9 @@ class GroupMatchFactory {
     * createFromMatch
     * 
     * @param AchimFritz\ChampionShip\Import\Domain\Model\Match $match
-    * @param AchimFritz\ChampionShip\Domain\Model\Cup $cup
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\Cup $cup
     * @param array $teams
-    * @param AchimFritz\ChampionShip\Domain\Model\GroupRound $groupRound
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\GroupRound $groupRound
     * @return GroupMatch $groupMatch
     */
    public function createFromMatch(Match $match, array $teams, Cup $cup, GroupRound $groupRound) {

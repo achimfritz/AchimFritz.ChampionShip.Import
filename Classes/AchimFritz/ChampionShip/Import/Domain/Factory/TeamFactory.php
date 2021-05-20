@@ -7,7 +7,7 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\Team;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Team;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 
 /**
@@ -19,7 +19,7 @@ class TeamFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\TeamRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\TeamRepository
     */
    protected $teamRepository;
 
@@ -50,7 +50,7 @@ class TeamFactory {
 	 * createFromTeam 
 	 * 
 	 * @param AchimFritz\ChampionShip\Import\Domain\Model\Team $team 
-	 * @param AchimFritz\ChampionShip\Domain\Model\Team $team 
+	 * @return AchimFritz\ChampionShip\Competition\Domain\Model\Team $team
 	 */
 	public function createFromTeam(\AchimFritz\ChampionShip\Import\Domain\Model\Team $team) {
 		$pTeam = $this->teamRepository->findOneByName($team->getNameDe());

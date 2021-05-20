@@ -7,8 +7,8 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\User;
-use AchimFritz\ChampionShip\Domain\Model\TipGroup;
+use AchimFritz\ChampionShip\User\Domain\Model\User;
+use AchimFritz\ChampionShip\User\Domain\Model\TipGroup;
 
 /**
  * UserFactory
@@ -19,19 +19,19 @@ class UserFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\UserRepository
+    * @var \AchimFritz\ChampionShip\User\Domain\Repository\UserRepository
     */
    protected $userRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\TipGroupRepository
+    * @var \AchimFritz\ChampionShip\User\Domain\Repository\TipGroupRepository
     */
    protected $tipGroupRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Factory\UserFactory
+    * @var \AchimFritz\ChampionShip\User\Domain\Factory\UserFactory
     */
    protected $userFactory;
 
@@ -44,10 +44,11 @@ class UserFactory {
 	/**
 	 * createFromUser 
 	 * 
-	 * @param AchimFritz\ChampionShip\Import\Domain\Model\User $user 
-	 * @param AchimFritz\ChampionShip\Domain\Model\User $user 
+	 * @param \AchimFritz\ChampionShip\Import\Domain\Model\User $user
+	 * @param User $user
 	 */
-	public function createFromUser(\AchimFritz\ChampionShip\Import\Domain\Model\User $user) {
+	public function createFromUser(\AchimFritz\ChampionShip\Import\Domain\Model\User $user): User
+	{
 		$this->userMapper->ignoredUsers($user);
 		$name = $this->userMapper->mapName($user->getName(), $user->getEmail());
 		$email = $this->userMapper->mapEmail($user->getEmail(), $user->getName());
@@ -85,5 +86,3 @@ class UserFactory {
 	}
 
 }
-
-?>

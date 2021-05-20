@@ -7,10 +7,10 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\ChildKoRound;
-use AchimFritz\ChampionShip\Domain\Model\KoRound;
-use AchimFritz\ChampionShip\Domain\Model\KoMatch;
-use AchimFritz\ChampionShip\Domain\Model\Cup;
+use AchimFritz\ChampionShip\Competition\Domain\Model\ChildKoRound;
+use AchimFritz\ChampionShip\Competition\Domain\Model\KoRound;
+use AchimFritz\ChampionShip\Competition\Domain\Model\KoMatch;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Cup;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 
 /**
@@ -22,7 +22,7 @@ class KoRoundFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\KoRoundRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\KoRoundRepository
     */
    protected $koRoundRepository;
 
@@ -31,7 +31,7 @@ class KoRoundFactory {
     * 
     * @param AchimFritz\ChampionShip\Import\Domain\Model\Match $match 
 	 * @param array $teams
-    * @param AchimFritz\ChampionShip\Domain\Model\Cup $cup 
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\Cup $cup
     * @return KoRound $groupRound
     */
    public function createFromMatch(Match $match, array $teams, Cup $cup) {

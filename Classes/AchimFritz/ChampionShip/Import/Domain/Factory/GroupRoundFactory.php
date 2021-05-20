@@ -7,8 +7,8 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\GroupRound;
-use AchimFritz\ChampionShip\Domain\Model\Cup;
+use AchimFritz\ChampionShip\Competition\Domain\Model\GroupRound;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Cup;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 
 /**
@@ -20,7 +20,7 @@ class GroupRoundFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\GroupRoundRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\GroupRoundRepository
     */
    protected $groupRoundRepository;
 
@@ -28,8 +28,8 @@ class GroupRoundFactory {
     * createFromMatch
     * 
     * @param AchimFritz\ChampionShip\Import\Domain\Model\Match $match 
-	 * @param array $teams
-    * @param AchimFritz\ChampionShip\Domain\Model\Cup $cup 
+    * @param array $teams
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\Cup $cup
     * @return GroupRound $groupRound
     */
    public function createFromMatch(Match $match, array $teams, Cup $cup) {

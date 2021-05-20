@@ -7,7 +7,7 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\Cup;
+use AchimFritz\ChampionShip\Competition\ChampionShip\Domain\Model\Cup;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 
 /**
@@ -19,7 +19,7 @@ class CupFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\CupRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\CupRepository
     */
    protected $cupRepository;
 

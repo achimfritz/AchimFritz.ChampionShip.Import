@@ -7,13 +7,13 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\KoMatch;
-use AchimFritz\ChampionShip\Domain\Model\CrossGroupMatch;
-use AchimFritz\ChampionShip\Domain\Model\TeamsOfTwoMatchesMatch;
-use AchimFritz\ChampionShip\Domain\Model\Result;
-use AchimFritz\ChampionShip\Domain\Model\GroupRound;
-use AchimFritz\ChampionShip\Domain\Model\KoRound;
-use AchimFritz\ChampionShip\Domain\Model\Cup;
+use AchimFritz\ChampionShip\Competition\Domain\Model\KoMatch;
+use AchimFritz\ChampionShip\Competition\Domain\Model\CrossGroupMatch;
+use AchimFritz\ChampionShip\Competition\Domain\Model\TeamsOfTwoMatchesMatch;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Result;
+use AchimFritz\ChampionShip\Competition\Domain\Model\GroupRound;
+use AchimFritz\ChampionShip\Competition\Domain\Model\KoRound;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Cup;
 use AchimFritz\ChampionShip\Import\Domain\Model\Match;
 
 /**
@@ -25,13 +25,13 @@ class KoMatchFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\KoMatchRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\KoMatchRepository
     */
    protected $koMatchRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\GroupRoundRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\GroupRoundRepository
     */
    protected $groupRoundRepository;
 
@@ -39,8 +39,8 @@ class KoMatchFactory {
     * createFromMatch
     * 
     * @param AchimFritz\ChampionShip\Import\Domain\Model\Match $match 
-    * @param AchimFritz\ChampionShip\Domain\Model\Cup $cup 
-    * @param AchimFritz\ChampionShip\Domain\Model\KoRound $koRound
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\Cup $cup
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\KoRound $koRound
     * @return KoMatch $koMatch
     */
    public function createFromKoMatch(Match $match, Cup $cup, KoRound $koRound) {
@@ -153,9 +153,9 @@ class KoMatchFactory {
     * createFromMatch
     * 
     * @param AchimFritz\ChampionShip\Import\Domain\Model\Match $match 
-    * @param AchimFritz\ChampionShip\Domain\Model\Cup $cup 
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\Cup $cup
     * @param array $teams
-    * @param AchimFritz\ChampionShip\Domain\Model\KoRound $koRound
+    * @param AchimFritz\ChampionShip\Competition\Domain\Model\KoRound $koRound
     * @return KoMatch $koMatch
     */
    public function createFromMatch(Match $match, array $teams, Cup $cup, KoRound $koRound) {

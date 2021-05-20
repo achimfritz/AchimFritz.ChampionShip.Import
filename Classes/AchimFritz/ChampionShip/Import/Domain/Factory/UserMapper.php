@@ -7,7 +7,7 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\User;
+use AchimFritz\ChampionShip\User\Domain\Model\User;
 
 /**
  * UserMapper
@@ -21,7 +21,6 @@ class UserMapper implements UserMapperInterface {
 	 * 
 	 * @param User $user 
 	 * @return void
-	 * @throws Exception
 	 */
 	public function ignoredUsers(\AchimFritz\ChampionShip\Import\Domain\Model\User $user) {
 	}

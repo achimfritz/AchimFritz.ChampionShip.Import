@@ -7,12 +7,12 @@ namespace AchimFritz\ChampionShip\Import\Domain\Factory;
  *                                                                        */
 
 use Neos\Flow\Annotations as Flow;
-use AchimFritz\ChampionShip\Domain\Model\Team;
-use AchimFritz\ChampionShip\Domain\Model\Match;
-use AchimFritz\ChampionShip\Domain\Model\Cup;
-use AchimFritz\ChampionShip\Domain\Model\User;
-use AchimFritz\ChampionShip\Domain\Model\Result;
-use AchimFritz\ChampionShip\Domain\Model\TipGroup;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Team;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Match;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Cup;
+use AchimFritz\ChampionShip\User\Domain\Model\User;
+use AchimFritz\ChampionShip\Competition\Domain\Model\Result;
+use AchimFritz\ChampionShip\User\Domain\Model\TipGroup;
 use AchimFritz\ChampionShip\Import\Domain\Model\Tip;
 
 /**
@@ -30,43 +30,43 @@ class TipFactory {
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\KoMatchRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\KoMatchRepository
     */
    protected $koMatchRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\GroupMatchRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\GroupMatchRepository
     */
    protected $groupMatchRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\TeamRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\TeamRepository
     */
    protected $teamRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\TipRepository
+    * @var \AchimFritz\ChampionShip\Tip\Domain\Repository\TipRepository
     */
    protected $tipRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\CupRepository
+    * @var \AchimFritz\ChampionShip\Competition\Domain\Repository\CupRepository
     */
    protected $cupRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\UserRepository
+    * @var \AchimFritz\ChampionShip\User\Domain\Repository\UserRepository
     */
    protected $userRepository;
 
    /**
     * @Flow\Inject
-    * @var \AchimFritz\ChampionShip\Domain\Repository\TipGroupRepository
+    * @var \AchimFritz\ChampionShip\User\Domain\Repository\TipGroupRepository
     */
    protected $tipGroupRepository;
 
@@ -79,12 +79,11 @@ class TipFactory {
    /**
     * createFromTip
     * 
-    * @param AchimFritz\ChampionShip\Import\Domain\Model\Tip $tip
-    * @return AchimFritz\ChampionShip\Domain\Model\Tip
+    * @param \AchimFritz\ChampionShip\Import\Domain\Model\Tip $tip
+    * @return \AchimFritz\ChampionShip\Tip\Domain\Model\Tip
     */
    public function createFromTip(Tip $tip) {
 		$cup = $this->cupRepository->findOneByName($tip->getCupName());
-		#$name = html_entity_decode($tip->getHomeTeam(), ENT_COMPAT, 'UTF-8');
 		$name = $tip->getHomeTeam();
 		$homeTeam = $this->teamRepository->findOneByName($name);
 		$homeName = $name;
@@ -102,16 +101,16 @@ class TipFactory {
 		if (!$match instanceof Match) {
 			throw new \Exception('no match found', 1380727273);
 		}
-		#$accountIdentifier = strtolower($tip->getUsername()) . '@' . strtolower($tip->getEmail());
+
 		$accountIdentifier = $this->userMapper->mapName($tip->getUsername());
 		$user = $this->userRepository->findOneByUserName($accountIdentifier);
 		if (!$user instanceof User) {
 			throw new \Exception('user not found ' . $accountIdentifier . ' - ' . $tip->getEmail() . '(' . $tip->getCupName() . ')', 1392564815);
-			#$user = $this->userFactory->create(strtolower($tip->getEmail()), strtolower($tip->getUsername()));
+
 		}
 		$newTip = $this->tipRepository->findOneByUserAndMatch($user, $match);
-		if (!$newTip instanceof \AchimFritz\ChampionShip\Domain\Model\Tip) {
-			$newTip = new \AchimFritz\ChampionShip\Domain\Model\Tip();
+		if (!$newTip instanceof \AchimFritz\ChampionShip\Tip\Domain\Model\Tip) {
+			$newTip = new \AchimFritz\ChampionShip\Tip\Domain\Model\Tip();
 			$newTip->setUser($user);
 			$newTip->setMatch($match);
 			$this->tipRepository->add($newTip);
